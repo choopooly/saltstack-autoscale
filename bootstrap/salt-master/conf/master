@@ -1,0 +1,12 @@
+master_id: salt-01
+
+log_level: debug
+
+fileserver_backend:
+  - roots
+base:
+  - /srv/salt
+pillar_roots:
+  base:
+    - /srv/pillar
+

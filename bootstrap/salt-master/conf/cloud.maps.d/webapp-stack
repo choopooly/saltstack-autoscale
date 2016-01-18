@@ -1,0 +1,7 @@
+nano_ec2:
+  - lb-01:
+  - web-01:
+trends_ec2:
+  - graph-01
+  
+
