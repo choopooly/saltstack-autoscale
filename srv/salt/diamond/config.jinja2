@@ -1,0 +1,186 @@
+# {{ salt['pillar.get']('message_do_not_modify') }}
+
+{%- set __test__ = salt['pillar.get']("__test__", False) %}
+{%- set graphite_address = salt['pillar.get']('graphite_address', False) %}
+[server]
+
+# Handlers for published metrics.
+handlers = {% if graphite_address -%}
+diamond.handler.graphite.GraphiteHandler
+{%- else -%}
+diamond.handler.null.NullHandler
+{%- endif -%}
+{%- if __test__ -%}
+,diamond.handler.archive.ArchiveHandler
+{%- endif %}
+
+{#- empty is run at actual user #}
+user =
+group =
+
+pid_file = /var/run/diamond.pid
+collectors_path = /usr/local/diamond/share/diamond/collectors
+collectors_config_path = /etc/diamond/collectors/
+collectors_reload_interval = 3600
+
+handlers_config_path = /etc/diamond/handlers/
+
+[handlers]
+
+{#- logging handlers #}
+keys = syslog
+
+[[default]]
+
+[[GraphiteHandler]]
+host = {{ graphite_address }}
+port = 2003
+timeout = 15
+batch = {{ salt['pillar.get']('diamond:batch', 256) }}
+
+{% if salt['pillar.get']("__test__", False) %}
+[[ArchiveHandler]]
+{#- File to write archive log files #}
+log_file = {{ opts['cachedir'] }}/diamond.archive.log
+
+{#- Only keep the current archive log file,
+    which is used to test collectors #}
+days = 0
+{%- endif %}
+
+[collectors]
+
+[[default]]
+
+hostname_method = uname_short
+
+enabled = False
+
+path_prefix =
+path_suffix = os
+
+splay = 1
+interval = 60
+
+method = Sequential
+
+byte_unit = byte
+
+[[CPUCollector]]
+
+enabled = True
+
+[[DiskSpaceCollector]]
+
+enabled = True
+filesystems = ext2,ext3,ext4,xfs,glusterfs,nfs,ntfs,hfs,fat32,fat16,rootfs,jfs,simfs
+
+{% if grains['virtual'] != 'openvzve' %}
+[[DiskUsageCollector]]
+
+enabled = True
+
+devices = md[0-9]*$|[vs]d[a-z][0-9]*$|xvd[a-z][0-9]*$|dm\-[0-9]*$
+
+    {%- if salt['pillar.get']('__test__', False) -%}
+        {#- in test mode using _states/diamond.py the collector is executed
+            only once.
+            as it need more than 1 execution to get metrics for a time delta
+            all metrics are 0 or 0.0.
+            to test that metrics get at least generated, set the following
+            configuration. #}
+send_zero = True
+    {%- endif -%}
+{% endif %}
+
+[[FilestatCollector]]
+
+enabled = True
+
+[[InterruptCollector]]
+
+enabled = True
+
+[[LoadAverageCollector]]
+
+enabled = True
+
+[[MemoryCollector]]
+
+enabled = True
+
+[[NetworkCollector]]
+
+enabled = True
+interfaces = {% for interface in salt['pillar.get']('diamond:interfaces', ('eth0', 'lo')) %}{{ interface }}{% if not loop.last %}, {% endif %}{% endfor %}
+
+{%- for host, address in salt['pillar.get']('diamond:ping', {}).items() -%}
+    {%- if loop.first %}
+[[PingCollector]]
+
+enabled = True
+    {%- endif %}
+target_{{ host }} = {{ address }}
+{%- endfor %}
+
+[[ProcessStatCollector]]
+
+enabled = True
+
+[[IPVSCollector]]
+
+enabled = False
+
+[[SockstatCollector]]
+
+enabled = True
+
+[[TCPCollector]]
+
+enabled = True
+
+[[UptimeCollector]]
+
+enabled = True
+
+[[UserScriptsCollector]]
+enabled = True
+
+scripts_path = /usr/local/diamond/share/diamond/user_scripts/
+
+[[VMStatCollector]]
+
+enabled = True
+
+[loggers]
+
+keys = root
+
+[formatters]
+
+keys = message_only,syslog
+
+[logger_root]
+  {%- if salt['pillar.get']('debug', False) %}
+level = DEBUG
+  {%- else %}
+level = WARNING
+  {%- endif %}
+handlers = syslog
+
+[handler_syslog]
+level = NOTSET
+formatter = syslog
+class = logging.handlers.SysLogHandler
+args = ('/dev/log', handlers.SysLogHandler.LOG_DAEMON)
+
+[formatter_syslog]
+class = logging.Formatter
+format = %(asctime)-15s diamond[%(process)d] %(levelname)s %(name)s %(module)s.%(funcName)s:%(lineno)d %(message)s
+datefmt = %b %d %H:%M:%S
+
+[formatter_message_only]
+class = logging.Formatter
+format = %(message)s
+datefmt =
+

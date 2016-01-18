@@ -1,0 +1,48 @@
+# {{ salt['pillar.get']('message_do_not_modify') }}
+
+global
+        log 127.0.0.1   local1 {% if salt['pillar.get']('debug', False) %}debug{% else %}notice{% endif %}
+        maxconn {{ salt['pillar.get']('haproxy:global:maxconn', 4096) }}
+        user haproxy
+        group haproxy
+        daemon
+
+defaults
+        log global
+        mode    http
+        option  httplog
+        option  dontlognull
+        retries 3
+        option redispatch
+        maxconn 2000
+        timeout connect 5000
+        timeout client 50000
+        timeout server 50000
+
+{%- for instance in salt['pillar.get']('haproxy:instances') %}
+  {%- set ssl = salt['pillar.get']('haproxy:instances:' ~ instance ~ ':ssl', False) %}
+  {%- set ip = salt['pillar.get']('haproxy:instances:' ~ instance ~ ':ip', '0.0.0.0') %}
+  {%- set port = salt['pillar.get']('haproxy:instances:' ~ instance ~ ':port') %}
+  {% set backends = salt['pillar.get']('haproxy:instances:' ~ instance ~ ':backends') %}
+frontend {{ instance }}
+        mode {{ salt['pillar.get']('haproxy:instances:' ~ instance ~ ':mode', 'http') }}
+        bind {{ ip }}:{{ port }}{% if ssl %} ssl crt /etc/ssl/private/{{ ssl }}.pem
+        reqadd X-Forwarded-Proto:\ https{% endif %}
+  {%- for fe_cfg in salt['pillar.get']('haproxy:instances:' ~ instance ~ ':additional', []) %}
+        {{ fe_cfg | indent(8) }}
+  {%- endfor %}
+        default_backend {{ backends.keys()[0] }}
+  {% for backend in backends %}
+backend {{ backend }}
+        mode {{ salt['pillar.get']('haproxy:instances:' ~ instance ~ ':backends:' ~ backend ~ ':mode', 'http') }}
+        balance {{ salt['pillar.get']('haproxy:instances:' ~ instance ~ ':backends:' ~ backend ~ ':balance', 'roundrobin') }}
+    {# {%- for server_name, server in salt['pillar.get']('haproxy:instances:' ~ instance ~ ':backends:' ~ backend ~ ':servers').iteritems() %} #}
+    {%- for server, addrs in salt['mine.get']('web*', 'network.ip_addrs').items() %}
+        server {{ server }} {{ addrs[0] }}:80 check
+    {%- endfor %}
+    {%- for be_cfg in salt['pillar.get']('haproxy:instances:' ~ instance ~ ':backends:' ~ backend ~ ':additional', []) %}
+        {{ be_cfg | indent(8) }}
+    {%- endfor -%}
+  {%- endfor -%}
+{%- endfor %}
+

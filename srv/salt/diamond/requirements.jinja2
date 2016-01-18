@@ -1,0 +1,19 @@
+# {{ salt['pillar.get']('message_do_not_modify') }}
+
+configobj==5.0.6
+pip==1.5.2
+psutil==2.1.3
+six==1.9.0
+{%- if salt['pillar.get']('files_archive', False) %}
+diamond==3.7.2
+{%- else %}
+https://github.com/hvnsweeting/Diamond/archive/v3.7.2.tar.gz
+{%- endif -%}
+{%- if salt['pillar.get']('graylog2_address', False) %}
+graypy==0.2.9
+{%- endif %}
+{%- if salt['pillar.get']('sentry_dsn', False) %}
+requests==2.4.3
+raven==4.1.1
+{%- endif %}
+

@@ -1,0 +1,43 @@
+server {
+    listen 80;
+{% if salt['pillar.get']('grafana:ssl', False) -%}
+{% if salt['pillar.get']('grafana:ssl_redirect', False) -%}
+    {# if https, redirect http port 80 to https port 443 #}
+    server_name localhost;
+    return 301 https://{{ salt['pillar.get']('grafana:hostnames')[0] }}$request_uri;
+}
+{#- https server #}
+server {
+{% endif %}{# redirect http to https #}
+{%- from 'nginx/macro.jinja2' import ssl_config with context %}
+    {{ ssl_config(salt['pillar.get']('grafana:ssl', False)) }}
+{% endif %}
+{#- web app logic #}
+    server_name localhost;
+    client_max_body_size 0;
+
+    location / {
+        proxy_pass                 http://127.0.0.1:8080;
+        proxy_set_header           X-Real-IP   $remote_addr;
+        proxy_set_header           X-Forwarded-For  $proxy_add_x_forwarded_for;
+        proxy_set_header           X-Forwarded-Proto  $scheme;
+        proxy_set_header           X-Forwarded-Server  $host;
+        proxy_set_header           X-Forwarded-Host  $host;
+        proxy_set_header           Host  $host;
+
+        satisfy any;
+        allow 127.0.0.1/32;
+        # Docker network range
+        allow 172.17.0.0/16;
+        allow 172.0.0.0/8;
+        allow 10.0.0.0/8;
+
+        deny  all;
+        auth_basic           "you shall not pass";
+        auth_basic_user_file /etc/nginx/htpasswd;
+
+    }
+}
+
+
+
