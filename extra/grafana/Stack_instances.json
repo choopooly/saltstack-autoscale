@@ -1,0 +1,1748 @@
+{
+  "id": null,
+  "title": "Stack instances",
+  "originalTitle": "Stack instances",
+  "tags": [],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": false,
+  "rows": [
+    {
+      "title": "cpu/ram",
+      "height": "300px",
+      "editable": true,
+      "collapse": false,
+      "panels": [
+        {
+          "title": "Total CPU usage",
+          "error": false,
+          "span": 5,
+          "editable": true,
+          "type": "graph",
+          "id": 1,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": 0,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 5,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 1,
+          "bars": false,
+          "stack": true,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": true,
+            "alignAsTable": false,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "aliasByMetric($instance.os.cpu.total.system)",
+              "hide": false
+            },
+            {
+              "target": "aliasByMetric($instance.os.cpu.total.user)",
+              "hide": false
+            },
+            {
+              "target": "aliasByMetric($instance.os.cpu.total.guest)",
+              "hide": false
+            },
+            {
+              "target": "aliasByMetric($instance.os.cpu.total.iowait)",
+              "hide": false
+            },
+            {
+              "target": "aliasByMetric($instance.os.cpu.total.steal)",
+              "hide": false
+            }
+          ],
+          "aliasColors": {
+            "ip-172-17-10-28.os.cpu.total.steal": "#BF1B00",
+            "steal": "#890F02",
+            "system": "#C15C17",
+            "user": "#EAB839"
+          },
+          "seriesOverrides": [],
+          "links": []
+        },
+        {
+          "title": "load average",
+          "error": false,
+          "span": 3,
+          "editable": true,
+          "type": "graph",
+          "id": 11,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": 0,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 6,
+          "linewidth": 3,
+          "points": false,
+          "pointradius": 3,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "rightSide": false,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "alias($instance.os.loadavg.01, '1min')",
+              "hide": false
+            }
+          ],
+          "aliasColors": {
+            "ip-172-17-10-28.os.cpu.total.steal": "#BF1B00",
+            "ip-172-17-10-28.os.memory.MemTotal": "#EAB839",
+            "ip-172-17-10-28.os.memory.MemFree": "#7EB26D",
+            "MemTotal": "#0A437C",
+            "MemFree": "#70DBED",
+            "assigned": "#70DBED",
+            "max": "#447EBC",
+            "teststats-03171-Bastion.os.iostat.xvda.reads_per_second": "#EA6460",
+            "teststats-03171-Bastion.os.iostat.xvda.writes_per_second": "#962D82",
+            "01": "#E0752D",
+            "load avg": "#BADFF4",
+            "1min": "#F2C96D"
+          },
+          "seriesOverrides": [
+            {
+              "alias": "assigned"
+            },
+            {
+              "alias": "1min",
+              "yaxis": 1
+            }
+          ],
+          "links": [],
+          "leftYAxisLabel": ""
+        },
+        {
+          "title": "Memory usage",
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "graph",
+          "id": 2,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "percent",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": 0,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 5,
+          "linewidth": 3,
+          "points": false,
+          "pointradius": 4,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "averageSeries($instance.os.memory.MemTotal)",
+              "hide": true
+            },
+            {
+              "target": "alias(asPercent(sumSeries($instance.os.memory.MemFree, $instance.os.memory.Cached), #A),\"memFree\") ",
+              "hide": false
+            }
+          ],
+          "aliasColors": {
+            "ip-172-17-10-28.os.cpu.total.steal": "#BF1B00",
+            "ip-172-17-10-28.os.memory.MemTotal": "#EAB839",
+            "ip-172-17-10-28.os.memory.MemFree": "#7EB26D",
+            "MemTotal": "#0A437C",
+            "MemFree": "#70DBED",
+            "memFree": "#5195CE"
+          },
+          "seriesOverrides": [],
+          "links": []
+        }
+      ]
+    },
+    {
+      "title": "disk & files",
+      "height": "250px",
+      "editable": true,
+      "collapse": false,
+      "panels": [
+        {
+          "title": "Files assigned",
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "graph",
+          "id": 7,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": 0,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 6,
+          "linewidth": 3,
+          "points": false,
+          "pointradius": 1,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false,
+            "alignAsTable": false,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "aliasByMetric($instance.os.files.unused)",
+              "hide": false
+            },
+            {
+              "target": "aliasByMetric($instance.os.files.assigned)",
+              "hide": false
+            }
+          ],
+          "aliasColors": {
+            "ip-172-17-10-28.os.cpu.total.steal": "#BF1B00",
+            "ip-172-17-10-28.os.memory.MemTotal": "#EAB839",
+            "ip-172-17-10-28.os.memory.MemFree": "#7EB26D",
+            "MemTotal": "#0A437C",
+            "MemFree": "#70DBED",
+            "assigned": "#0A437C",
+            "max": "#447EBC",
+            "unused": "#70DBED"
+          },
+          "seriesOverrides": [
+            {
+              "alias": "assigned"
+            }
+          ],
+          "links": [],
+          "leftYAxisLabel": "files"
+        },
+        {
+          "title": "processes",
+          "error": false,
+          "span": 3,
+          "editable": true,
+          "type": "graph",
+          "id": 10,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": 0,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 6,
+          "linewidth": 3,
+          "points": false,
+          "pointradius": 1,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false,
+            "alignAsTable": false,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "aliasByMetric($instance.os.loadavg.processes_total)",
+              "hide": false
+            },
+            {
+              "target": "aliasByMetric($instance.os.loadavg.processes_running)",
+              "hide": false
+            }
+          ],
+          "aliasColors": {
+            "ip-172-17-10-28.os.cpu.total.steal": "#BF1B00",
+            "ip-172-17-10-28.os.memory.MemTotal": "#EAB839",
+            "ip-172-17-10-28.os.memory.MemFree": "#7EB26D",
+            "MemTotal": "#0A437C",
+            "MemFree": "#70DBED",
+            "assigned": "#70DBED",
+            "max": "#447EBC"
+          },
+          "seriesOverrides": [
+            {
+              "alias": "assigned"
+            }
+          ],
+          "links": [],
+          "leftYAxisLabel": ""
+        },
+        {
+          "title": "Disks bytes % free",
+          "error": false,
+          "span": 2,
+          "editable": true,
+          "type": "graph",
+          "id": 4,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "percent",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": 0,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 7,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 1,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "aliasByNode($instance.os.diskspace.*.byte_percentfree, 4)",
+              "hide": false
+            }
+          ],
+          "aliasColors": {
+            "ip-172-17-10-28.os.cpu.total.steal": "#BF1B00",
+            "ip-172-17-10-28.os.memory.MemTotal": "#EAB839",
+            "ip-172-17-10-28.os.memory.MemFree": "#7EB26D",
+            "MemTotal": "#6ED0E0",
+            "root": "#447EBC",
+            "diskspace": "#806EB7"
+          },
+          "seriesOverrides": [],
+          "links": []
+        },
+        {
+          "title": "Disks inodes % free",
+          "error": false,
+          "span": 2,
+          "editable": true,
+          "type": "graph",
+          "id": 5,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "percent",
+            "short"
+          ],
+          "grid": {
+            "leftMax": 100,
+            "rightMax": null,
+            "leftMin": 0,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 7,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 1,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "aliasByNode($instance.os.diskspace.*.inodes_percentfree, 4)",
+              "hide": false
+            }
+          ],
+          "aliasColors": {
+            "ip-172-17-10-28.os.cpu.total.steal": "#BF1B00",
+            "ip-172-17-10-28.os.memory.MemTotal": "#EAB839",
+            "ip-172-17-10-28.os.memory.MemFree": "#7EB26D",
+            "MemTotal": "#6ED0E0",
+            "root": "#0A437C",
+            "diskspace": "#806EB7"
+          },
+          "seriesOverrides": [],
+          "links": []
+        },
+        {
+          "title": "uptime",
+          "error": false,
+          "span": 1,
+          "editable": true,
+          "type": "singlestat",
+          "id": 20,
+          "links": [],
+          "maxDataPoints": 100,
+          "interval": null,
+          "targets": [
+            {
+              "target": "averageSeries($instance.os.uptime.minutes)"
+            }
+          ],
+          "cacheTimeout": null,
+          "format": "none",
+          "prefix": "",
+          "postfix": " minutes",
+          "nullText": null,
+          "valueMaps": [
+            {
+              "value": "null",
+              "op": "=",
+              "text": "N/A"
+            }
+          ],
+          "nullPointMode": "connected",
+          "valueName": "min",
+          "prefixFontSize": "50%",
+          "valueFontSize": "80%",
+          "postfixFontSize": "50%",
+          "thresholds": "",
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "sparkline": {
+            "show": true,
+            "full": true,
+            "lineColor": "rgb(31, 120, 193)",
+            "fillColor": "rgba(31, 118, 189, 0.18)"
+          }
+        }
+      ]
+    },
+    {
+      "title": "disk",
+      "height": "250px",
+      "editable": true,
+      "collapse": false,
+      "panels": [
+        {
+          "title": "xvda - iops",
+          "error": false,
+          "span": 3,
+          "editable": true,
+          "type": "graph",
+          "id": 6,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": 0,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": false,
+          "fill": 6,
+          "linewidth": 3,
+          "points": false,
+          "pointradius": 1,
+          "bars": true,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": true,
+            "max": true,
+            "current": false,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "rightSide": false,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "aliasByMetric(summarize($instance.os.iostat.xvda.iops, '2m', 'sum', false))",
+              "hide": false
+            }
+          ],
+          "aliasColors": {
+            "ip-172-17-10-28.os.cpu.total.steal": "#BF1B00",
+            "ip-172-17-10-28.os.memory.MemTotal": "#EAB839",
+            "ip-172-17-10-28.os.memory.MemFree": "#7EB26D",
+            "MemTotal": "#0A437C",
+            "MemFree": "#70DBED",
+            "assigned": "#70DBED",
+            "max": "#447EBC",
+            "teststats-03171-Bastion.os.iostat.xvda.iops": "#EAB839",
+            "iops": "#EAB839"
+          },
+          "seriesOverrides": [
+            {
+              "alias": "assigned"
+            }
+          ],
+          "links": [],
+          "leftYAxisLabel": ""
+        },
+        {
+          "title": "xvda - reads & writes per second",
+          "error": false,
+          "span": 3,
+          "editable": true,
+          "type": "graph",
+          "id": 8,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": 0,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": false,
+          "fill": 6,
+          "linewidth": 3,
+          "points": false,
+          "pointradius": 3,
+          "bars": true,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "rightSide": false,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "aliasByMetric(summarize($instance.os.iostat.xvda.reads_per_second, '2m', 'sum', false))",
+              "hide": false
+            },
+            {
+              "target": "aliasByMetric(summarize($instance.os.iostat.xvda.writes_per_second, '2m', 'sum', false))",
+              "hide": false
+            }
+          ],
+          "aliasColors": {
+            "ip-172-17-10-28.os.cpu.total.steal": "#BF1B00",
+            "ip-172-17-10-28.os.memory.MemTotal": "#EAB839",
+            "ip-172-17-10-28.os.memory.MemFree": "#7EB26D",
+            "MemTotal": "#0A437C",
+            "MemFree": "#70DBED",
+            "assigned": "#70DBED",
+            "max": "#447EBC",
+            "teststats-03171-Bastion.os.iostat.xvda.reads_per_second": "#EA6460",
+            "teststats-03171-Bastion.os.iostat.xvda.writes_per_second": "#962D82",
+            "teststats-03171-LogAdmin.i-b9411470.os.iostat.xvda.reads_per_second": "#0A437C",
+            "teststats-03171-LogAdmin.i-b9411470.os.iostat.xvda.writes_per_second": "#EF843C",
+            "reads_per_second": "#0A437C",
+            "writes_per_second": "#70DBED"
+          },
+          "seriesOverrides": [
+            {
+              "alias": "assigned"
+            }
+          ],
+          "links": [],
+          "leftYAxisLabel": ""
+        },
+        {
+          "title": "xvda - avg request size byte",
+          "error": false,
+          "span": 3,
+          "editable": true,
+          "type": "graph",
+          "id": 9,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": 0,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 6,
+          "linewidth": 3,
+          "points": false,
+          "pointradius": 3,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "rightSide": false,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "aliasByMetric($instance.os.iostat.xvda.average_request_size_byte)",
+              "hide": false
+            }
+          ],
+          "aliasColors": {
+            "ip-172-17-10-28.os.cpu.total.steal": "#BF1B00",
+            "ip-172-17-10-28.os.memory.MemTotal": "#EAB839",
+            "ip-172-17-10-28.os.memory.MemFree": "#7EB26D",
+            "MemTotal": "#0A437C",
+            "MemFree": "#70DBED",
+            "assigned": "#70DBED",
+            "max": "#447EBC",
+            "teststats-03171-Bastion.os.iostat.xvda.reads_per_second": "#EA6460",
+            "teststats-03171-Bastion.os.iostat.xvda.writes_per_second": "#962D82",
+            "average_request_size_byte": "#EF843C"
+          },
+          "seriesOverrides": [
+            {
+              "alias": "assigned"
+            }
+          ],
+          "links": [],
+          "leftYAxisLabel": ""
+        },
+        {
+          "title": "xvda - disk usage %",
+          "error": false,
+          "span": 3,
+          "editable": true,
+          "type": "graph",
+          "id": 12,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "percent",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": 0,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 6,
+          "linewidth": 3,
+          "points": false,
+          "pointradius": 3,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "rightSide": false,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "aliasByMetric($instance.os.iostat.xvda.util_percentage)",
+              "hide": false
+            }
+          ],
+          "aliasColors": {
+            "ip-172-17-10-28.os.cpu.total.steal": "#BF1B00",
+            "ip-172-17-10-28.os.memory.MemTotal": "#EAB839",
+            "ip-172-17-10-28.os.memory.MemFree": "#7EB26D",
+            "MemTotal": "#0A437C",
+            "MemFree": "#70DBED",
+            "assigned": "#70DBED",
+            "max": "#447EBC",
+            "teststats-03171-Bastion.os.iostat.xvda.reads_per_second": "#EA6460",
+            "teststats-03171-Bastion.os.iostat.xvda.writes_per_second": "#962D82",
+            "average_request_size_byte": "#EF843C",
+            "util_percentage": "#E24D42"
+          },
+          "seriesOverrides": [
+            {
+              "alias": "assigned"
+            }
+          ],
+          "links": [],
+          "leftYAxisLabel": ""
+        }
+      ]
+    },
+    {
+      "title": "sockets",
+      "height": "250px",
+      "editable": true,
+      "collapse": false,
+      "panels": [
+        {
+          "title": "used sockets",
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "graph",
+          "id": 17,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "none",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": 0,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 6,
+          "linewidth": 3,
+          "points": false,
+          "pointradius": 3,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": true,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "rightSide": false,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "aliasByMetric($instance.os.sockets.used)",
+              "hide": false
+            }
+          ],
+          "aliasColors": {
+            "ip-172-17-10-28.os.cpu.total.steal": "#BF1B00",
+            "ip-172-17-10-28.os.memory.MemTotal": "#EAB839",
+            "ip-172-17-10-28.os.memory.MemFree": "#7EB26D",
+            "MemTotal": "#0A437C",
+            "MemFree": "#70DBED",
+            "assigned": "#70DBED",
+            "max": "#447EBC",
+            "teststats-03171-Bastion.os.iostat.xvda.iops": "#EAB839",
+            "used": "#F29191"
+          },
+          "seriesOverrides": [
+            {
+              "alias": "assigned"
+            }
+          ],
+          "links": [],
+          "leftYAxisLabel": ""
+        },
+        {
+          "title": "current established tcp",
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "graph",
+          "id": 18,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "none",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": 0,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 6,
+          "linewidth": 3,
+          "points": false,
+          "pointradius": 3,
+          "bars": false,
+          "stack": true,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": true,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "rightSide": false,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "aliasByMetric($instance.os.tcp.ActiveOpens)",
+              "hide": false
+            },
+            {
+              "target": "aliasByMetric($instance.os.tcp.PassiveOpens)",
+              "hide": false
+            }
+          ],
+          "aliasColors": {
+            "ip-172-17-10-28.os.cpu.total.steal": "#BF1B00",
+            "ip-172-17-10-28.os.memory.MemTotal": "#EAB839",
+            "ip-172-17-10-28.os.memory.MemFree": "#7EB26D",
+            "MemTotal": "#0A437C",
+            "MemFree": "#70DBED",
+            "assigned": "#70DBED",
+            "max": "#447EBC",
+            "teststats-03171-Bastion.os.iostat.xvda.iops": "#EAB839",
+            "used": "#705DA0",
+            "tcp_inuse": "#E24D42",
+            "CurrEstab": "#447EBC",
+            "ActiveOpens": "#C15C17",
+            "PassiveOpens": "#F2C96D"
+          },
+          "seriesOverrides": [
+            {
+              "alias": "assigned"
+            }
+          ],
+          "links": [],
+          "leftYAxisLabel": ""
+        },
+        {
+          "title": "current established tcp",
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "graph",
+          "id": 19,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "none",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": 0,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 6,
+          "linewidth": 3,
+          "points": false,
+          "pointradius": 3,
+          "bars": false,
+          "stack": true,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": true,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "rightSide": false,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "aliasByMetric($instance.os.tcp.InErrs)",
+              "hide": false
+            },
+            {
+              "target": "aliasByMetric($instance.os.tcp.AttemptFails)",
+              "hide": false
+            }
+          ],
+          "aliasColors": {
+            "ip-172-17-10-28.os.cpu.total.steal": "#BF1B00",
+            "ip-172-17-10-28.os.memory.MemTotal": "#EAB839",
+            "ip-172-17-10-28.os.memory.MemFree": "#7EB26D",
+            "MemTotal": "#0A437C",
+            "MemFree": "#70DBED",
+            "assigned": "#70DBED",
+            "max": "#447EBC",
+            "teststats-03171-Bastion.os.iostat.xvda.iops": "#EAB839",
+            "used": "#705DA0",
+            "tcp_inuse": "#E24D42",
+            "CurrEstab": "#447EBC",
+            "ActiveOpens": "#C15C17",
+            "PassiveOpens": "#F2C96D"
+          },
+          "seriesOverrides": [
+            {
+              "alias": "assigned"
+            }
+          ],
+          "links": [],
+          "leftYAxisLabel": ""
+        }
+      ]
+    },
+    {
+      "title": "New row",
+      "height": "250px",
+      "editable": true,
+      "collapse": false,
+      "panels": [
+        {
+          "title": "TCP stats",
+          "error": false,
+          "span": 6,
+          "editable": true,
+          "type": "graph",
+          "id": 21,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 2,
+          "linewidth": 2,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "aliasByMetric($instance.os.sockets.tcp*)"
+            }
+          ],
+          "aliasColors": {},
+          "seriesOverrides": [],
+          "links": []
+        },
+        {
+          "title": "UDP stats",
+          "error": false,
+          "span": 6,
+          "editable": true,
+          "type": "graph",
+          "id": 22,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 2,
+          "linewidth": 2,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "aliasByMetric($instance.os.sockets.udp*)"
+            }
+          ],
+          "aliasColors": {},
+          "seriesOverrides": [],
+          "links": []
+        }
+      ]
+    },
+    {
+      "title": "network",
+      "height": "250px",
+      "editable": true,
+      "collapse": false,
+      "panels": [
+        {
+          "title": "eth0 - rx/tx bytes",
+          "error": false,
+          "span": 3,
+          "editable": true,
+          "type": "graph",
+          "id": 13,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": 0,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 6,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 3,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "rightSide": false,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "aliasByMetric($instance.os.network.eth0.tx_byte)",
+              "hide": false
+            },
+            {
+              "target": "aliasByMetric($instance.os.network.eth0.rx_byte)",
+              "hide": false
+            }
+          ],
+          "aliasColors": {
+            "ip-172-17-10-28.os.cpu.total.steal": "#BF1B00",
+            "ip-172-17-10-28.os.memory.MemTotal": "#EAB839",
+            "ip-172-17-10-28.os.memory.MemFree": "#7EB26D",
+            "MemTotal": "#0A437C",
+            "MemFree": "#70DBED",
+            "assigned": "#70DBED",
+            "max": "#447EBC",
+            "teststats-03171-Bastion.os.iostat.xvda.iops": "#EAB839",
+            "rx_byte": "#0A437C",
+            "tx_byte": "#70DBED"
+          },
+          "seriesOverrides": [
+            {
+              "alias": "assigned"
+            }
+          ],
+          "links": [],
+          "leftYAxisLabel": ""
+        },
+        {
+          "title": "lo - rx/tx bytes",
+          "error": false,
+          "span": 3,
+          "editable": true,
+          "type": "graph",
+          "id": 15,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": 0,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 6,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 3,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "rightSide": false,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "aliasByMetric($instance.os.network.lo.rx_byte)",
+              "hide": false
+            },
+            {
+              "target": "aliasByMetric($instance.os.network.lo.tx_byte)",
+              "hide": false
+            }
+          ],
+          "aliasColors": {
+            "ip-172-17-10-28.os.cpu.total.steal": "#BF1B00",
+            "ip-172-17-10-28.os.memory.MemTotal": "#EAB839",
+            "ip-172-17-10-28.os.memory.MemFree": "#7EB26D",
+            "MemTotal": "#0A437C",
+            "MemFree": "#70DBED",
+            "assigned": "#70DBED",
+            "max": "#447EBC",
+            "teststats-03171-Bastion.os.iostat.xvda.iops": "#EAB839",
+            "rx_byte": "#0A50A1",
+            "tx_byte": "#5195CE"
+          },
+          "seriesOverrides": [
+            {
+              "alias": "assigned"
+            }
+          ],
+          "links": [],
+          "leftYAxisLabel": ""
+        },
+        {
+          "title": "eth0 - errors",
+          "error": false,
+          "span": 3,
+          "editable": true,
+          "type": "graph",
+          "id": 14,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "none",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": 0,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 6,
+          "linewidth": 3,
+          "points": false,
+          "pointradius": 3,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": true,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "rightSide": false,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "aliasByMetric($instance.os.network.eth0.rx_errors)",
+              "hide": false
+            },
+            {
+              "target": "aliasByMetric($instance.os.network.eth0.tx_errors)",
+              "hide": false
+            }
+          ],
+          "aliasColors": {
+            "ip-172-17-10-28.os.cpu.total.steal": "#BF1B00",
+            "ip-172-17-10-28.os.memory.MemTotal": "#EAB839",
+            "ip-172-17-10-28.os.memory.MemFree": "#7EB26D",
+            "MemTotal": "#0A437C",
+            "MemFree": "#70DBED",
+            "assigned": "#70DBED",
+            "max": "#447EBC",
+            "teststats-03171-Bastion.os.iostat.xvda.iops": "#EAB839",
+            "rx_errors": "#E24D42",
+            "tx_errors": "#E0752D"
+          },
+          "seriesOverrides": [
+            {
+              "alias": "assigned"
+            }
+          ],
+          "links": [],
+          "leftYAxisLabel": ""
+        },
+        {
+          "title": "lo - errors",
+          "error": false,
+          "span": 3,
+          "editable": true,
+          "type": "graph",
+          "id": 16,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "none",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": 0,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 6,
+          "linewidth": 3,
+          "points": false,
+          "pointradius": 3,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": true,
+            "min": false,
+            "max": false,
+            "current": true,
+            "total": false,
+            "avg": true,
+            "alignAsTable": true,
+            "rightSide": false,
+            "hideEmpty": true
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "aliasByMetric($instance.os.network.lo.rx_errors)",
+              "hide": false
+            },
+            {
+              "target": "aliasByMetric($instance.os.network.lo.tx_errors)",
+              "hide": false
+            }
+          ],
+          "aliasColors": {
+            "ip-172-17-10-28.os.cpu.total.steal": "#BF1B00",
+            "ip-172-17-10-28.os.memory.MemTotal": "#EAB839",
+            "ip-172-17-10-28.os.memory.MemFree": "#7EB26D",
+            "MemTotal": "#0A437C",
+            "MemFree": "#70DBED",
+            "assigned": "#70DBED",
+            "max": "#447EBC",
+            "teststats-03171-Bastion.os.iostat.xvda.iops": "#EAB839",
+            "rx_errors": "#E24D42",
+            "tx_errors": "#E0752D"
+          },
+          "seriesOverrides": [
+            {
+              "alias": "assigned"
+            }
+          ],
+          "links": [],
+          "leftYAxisLabel": ""
+        }
+      ]
+    }
+  ],
+  "nav": [
+    {
+      "type": "timepicker",
+      "enable": true,
+      "status": "Stable",
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d"
+      ],
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "now": true,
+      "collapse": false,
+      "notice": false
+    }
+  ],
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "templating": {
+    "list": [
+      {
+        "type": "query",
+        "datasource": null,
+        "refresh_on_load": false,
+        "name": "instance",
+        "options": [
+          {
+            "text": "carbon",
+            "value": "carbon"
+          },
+          {
+            "text": "docker-01",
+            "value": "docker-01"
+          },
+          {
+            "text": "grafana-01",
+            "value": "grafana-01"
+          },
+          {
+            "text": "manager-01",
+            "value": "manager-01"
+          },
+          {
+            "text": "npm-01",
+            "value": "npm-01"
+          },
+          {
+            "text": "se",
+            "value": "se"
+          },
+          {
+            "text": "stats",
+            "value": "stats"
+          }
+        ],
+        "includeAll": false,
+        "allFormat": "glob",
+        "regex": "",
+        "query": "*",
+        "current": {
+          "text": "docker-01",
+          "value": "docker-01"
+        },
+        "refresh": true
+      },
+      {
+        "type": "query",
+        "datasource": null,
+        "refresh_on_load": false,
+        "name": "id",
+        "options": [
+          {
+            "text": "All",
+            "value": "{i-31b2f03b}"
+          },
+          {
+            "text": "i-31b2f03b",
+            "value": "i-31b2f03b"
+          }
+        ],
+        "includeAll": true,
+        "allFormat": "glob",
+        "query": "$instance.*",
+        "current": {
+          "text": "All",
+          "value": "{i-31b2f03b}"
+        },
+        "refresh": true
+      }
+    ],
+    "enable": true
+  },
+  "annotations": {
+    "list": []
+  },
+  "refresh": false,
+  "version": 6,
+  "hideAllLegends": false
+}
