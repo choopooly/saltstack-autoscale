@@ -27,8 +27,6 @@ trends:
     - watch:
       - dockerng: {{ registry }}/{{ image }}:{{ tag }}
 
-
-
 {# nginx config #}
 
 /etc/nginx/conf.d/grafana.conf:
