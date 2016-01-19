@@ -21,11 +21,18 @@ trends:
       - 8080:80/tcp
       - 81:81/tcp
       - 2003:2003/tcp
+    - volumes: /opt/graphite/storage/whisper
     - binds:
-      -  /var/lib/docker/carbon-storage:/opt/graphite/storage/whisper/:rw
+      -  /var/lib/docker/carbon-storage:/var/lib/graphite/storage/whisper:rw
     - watch_action: SIGHUP
+    - require:
+      - file: /var/lib/docker/carbon-storage
     - watch:
       - dockerng: {{ registry }}/{{ image }}:{{ tag }}
+
+/var/lib/docker/carbon-storage:
+  file:
+    - directory
 
 {# nginx config #}
 
