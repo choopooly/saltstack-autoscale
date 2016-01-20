@@ -81,5 +81,4 @@ It's based on those 3 features:
 * **Scaler** perform scale-up and scale-down actions on **salt-api**.
 
 Here is a visualization of the autoscalling policy.
-
-
+![Overview](http://i.imgur.com/1FUTAfP.png)
