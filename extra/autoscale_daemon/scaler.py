@@ -4,25 +4,25 @@ import sys
 import uuid
 import requests
 import logging
+import logging.handlers
 
 import salt.client
 
-root = logging.getLogger()
-root.setLevel(logging.WARNING)
-
-ch = logging.StreamHandler(sys.stdout)
-ch.setLevel(logging.WARNING)
-format = "'%(asctime)s - %(name)s - %(levelname)s - %(message)s'"
+# syslog handler settings
+log = logging.getLogger(__name__)
+log.setLevel(logging.DEBUG)
+handler = logging.handlers.SysLogHandler(address='/dev/log')
+format = '%(module)s.%(funcName)s: %(levelname)s - %(message)s'
 formatter = logging.Formatter(format)
-ch.setFormatter(formatter)
-root.addHandler(ch)
+handler.setFormatter(formatter)
+log.addHandler(handler)
 
 
 def scale_up():
     """
     Send request to salt-api to scale up.
     """
-    logging.debug("Scaling up.")
+    log.debug("Scaling up.")
     # generate uuid
     node_id = uuid.uuid4()
     role = "web-"
@@ -39,16 +39,16 @@ def scale_up():
         sys.exit(1)
 
     if r.ok:
-        logging.warning("Deploying node: %s-%s" % (role, node_id))
+        log.warning("Deploying node: %s-%s" % (role, node_id))
     else:
-        logging.warning("Something went wrong contacting salt-master")
+        log.warning("Something went wrong contacting salt-master")
 
 
 def scale_down(instance):
     """
     Send request to salt-api to scale down.
     """
-    logging.debug("Scaling down %s." % (instance))
+    log.debug("Scaling down %s." % (instance))
     # send request to salt-master
     url = "http://localhost:8000/hook/scale_down"
     data = {'name': instance}
@@ -60,9 +60,9 @@ def scale_down(instance):
         sys.exit(1)
 
     if r.ok:
-        logging.warning("Removing node: %s" % (instance))
+        log.warning("Removing node: %s" % (instance))
     else:
-        logging.warning("Something went wrong contacting salt-master")
+        log.warning("Something went wrong contacting salt-master")
 
 
 def check_autoscale():
@@ -74,13 +74,13 @@ def check_autoscale():
     nodes = data.keys()
 
     if len(nodes) == 0:
-        logging.warning('No node found, scaling up the stack.')
+        log.warning('No node found, scaling up the stack.')
         scale_up()
     elif len(nodes) == 1:
-        logging.info('Nodes pool is at the minimum, no scaling down possible.')
+        log.info('Nodes pool is at the minimum, no scaling down possible.')
         scaling_logic(nodes)
     elif len(nodes) == 4:
-        logging.warning('Nodes pool already have the max members.')
+        log.warning('Nodes pool already have the max members.')
     else:
         scaling_logic(nodes)
 
@@ -89,7 +89,7 @@ def scaling_logic(nodes):
     """
     Scaling policy, based on the nodes average requests value
     """
-    scaling_up_value = 100
+    scaling_up_value = 50
     scaling_down_value = 25
     nodesdict = {}
     avglist = []
@@ -103,22 +103,22 @@ def scaling_logic(nodes):
         try:
             num = int(num)
         except TypeError:
-            logging.critical('Average number is not yet define')
+            log.critical('Average number is not yet define')
             sys.exit(1)
 
         avglist.append(num)
 
     totalavg = sum(avglist) / len(nodesdict.keys())
-    logging.debug('requests handled total average: %i' % (totalavg))
+    log.debug('requests handled total average: %i' % (totalavg))
 
     # define if scaling is necessary
     if totalavg >= scaling_up_value:
         scale_up()
     elif totalavg <= scaling_down_value:
         if len(nodes) == 1:
-            logging.info('Pool is at the minimum, no scaling down possible.')
+            log.info('Pool is at the minimum, no scaling down possible.')
         else:
-            instance = nodes[-1]
+            instance = nodes[0]
             scale_down(instance)
 
 
@@ -151,7 +151,7 @@ def get_trends(node):
     avg = feed[0]['datapoints'][0][0]
 
     # return
-    logging.debug('Node: %s, return value: %s' % (node, avg))
+    log.debug('Node: %s, return value: %s' % (node, avg))
     return avg
 
 if __name__ == '__main__':
